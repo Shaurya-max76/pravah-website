@@ -1,0 +1,23 @@
+[build]
+  publish = "."
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/updates"
+  to = "/updates/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200

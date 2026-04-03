@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update | Pravāh</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles/site.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <main class="page-shell">
+        <div class="page-inner article">
+            <div class="topbar">
+                <a class="brand" href="../index.html"><strong>Pravāh</strong><span>River Restoration
+                        Initiative</span></a>
+                <a class="back-link" href="index.html">Back to updates</a>
+            </div>
+
+            <section class="hero-card" id="post-shell">
+                <p class="eyebrow">Loading</p>
+                <h1>Loading post.</h1>
+                <p class="lede">Please wait a moment while the article loads.</p>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const shell = document.getElementById('post-shell');
+        const slug = new URLSearchParams(window.location.search).get('slug');
+
+        function escapeHtml(value) {
+            return String(value)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#39;');
+        }
+
+        function formatDate(value) {
+            const date = new Date(value + 'T00:00:00');
+            return new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+        }
+
+        function renderPost(post) {
+            document.title = post.title + ' | Pravāh';
+            shell.innerHTML = `
+        <p class="eyebrow">${escapeHtml(post.category || 'Update')}</p>
+        <h1>${escapeHtml(post.title)}</h1>
+        <p class="lede">${escapeHtml(post.excerpt || '')}</p>
+        <div class="post-meta" style="margin-top:1rem;">
+          <span>${escapeHtml(post.date ? formatDate(post.date) : '')}</span>
+          <span>${escapeHtml(post.location || 'Indore')}</span>
+        </div>
+      `;
+
+            const article = document.createElement('section');
+            article.className = 'content-card';
+            article.style.marginTop = '1rem';
+            article.innerHTML = marked.parse(post.body || '');
+            shell.insertAdjacentElement('afterend', article);
+        }
+
+        function showError(message) {
+            shell.innerHTML = `
+        <p class="eyebrow">Update</p>
+        <h1>Post not found.</h1>
+        <p class="lede">${escapeHtml(message)}</p>
+      `;
+        }
+
+        if (!slug) {
+            showError('No post slug was provided in the URL.');
+        } else {
+            fetch('../content/updates/posts/' + encodeURIComponent(slug) + '.json')
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('The requested post could not be loaded.');
+                    }
+                    return response.json();
+                })
+                .then(renderPost)
+                .catch(function () {
+                    showError('The requested post could not be loaded.');
+                });
+        }
+    </script>
+</body>
+
+</html>

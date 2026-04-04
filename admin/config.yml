@@ -3,8 +3,8 @@ backend:
   branch: backend-integration
 
 publish_mode: editorial_workflow
-site_url: /
-display_url: /
+site_url: https://YOUR-SITE-NAME.netlify.app
+display_url: https://YOUR-SITE-NAME.netlify.app
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"

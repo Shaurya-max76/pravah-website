@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pravāh CMS</title>
+</head>
+
+<body>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on('init', function (user) {
+                if (!user) {
+                    window.netlifyIdentity.on('login', function () {
+                        window.location.href = '/admin/';
+                    });
+                }
+            });
+
+            window.netlifyIdentity.init();
+
+            window.netlifyIdentity.on('logout', function () {
+                window.location.reload();
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/decap-cms@^3.7.3/dist/decap-cms.js"></script>
+</body>
+
+</html>

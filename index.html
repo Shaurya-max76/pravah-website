@@ -440,7 +440,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 5
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo"><span class="logo-name">Pravāh</span><span class="tag">River Restoration Initiative · Indore</span></a>
+  <a href="#hero" class="nav-logo"><span class="logo-name">Pravāh</span><span class="tag">River Restoration Initiative · Indore</span></a>
   <ul class="nav-links">
     <li><a href="#mission">Mission</a></li>
     <li><a href="#wings">Two Wings</a></li>
@@ -796,7 +796,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 5
   <div class="updates-inner">
     <div class="updates-header reveal">
       <div><div class="s-label nature">Field Notes</div><h2 class="s-title">From the ground.</h2></div>
-      <a href="#" class="btn-outline-sm">All Updates →</a>
+      <a href="updates/" class="btn-outline-sm">All Updates →</a>
     </div>
     <div class="posts-grid reveal">
       <div class="post featured">
@@ -833,7 +833,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 5
           <div class="post-meta">March 2026 · Field Research · Indore</div>
           <h3 class="post-title">Survey 001: Mapping the Saraswati &amp; Kanh — Two Rivers, One City</h3>
           <p class="post-excerpt">First systematic field survey of both rivers — walking from origin to confluence, documenting conditions, obstruction points, and collecting water samples. The two rivers that define Indore's water story, mapped for the first time as a unified system.</p>
-          <a href="#" class="post-link">Read field notes →</a>
+          <a href="updates/post.html?slug=survey-001" class="post-link">Read field notes →</a>
         </div>
       </div>
       <div class="post">
@@ -862,7 +862,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 5
         <div class="post-body">
           <div class="post-meta">Feb 2026 · Community</div>
           <h3 class="post-title">Building Pravāh's Ground Network: Who We Need</h3>
-          <a href="#" class="post-link">Read →</a>
+          <a href="updates/post.html?slug=ground-network" class="post-link">Read →</a>
         </div>
       </div>
       <div class="post">
@@ -885,7 +885,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 5
         <div class="post-body">
           <div class="post-meta">Jan 2026 · Founding</div>
           <h3 class="post-title">Why Pravāh: The Case for Science-Driven River Restoration</h3>
-          <a href="#" class="post-link">Read →</a>
+          <a href="updates/post.html?slug=why-pravah" class="post-link">Read →</a>
         </div>
       </div>
     </div>
@@ -1029,10 +1029,10 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 5
     </div>
     <div class="footer-col"><h5>Navigate</h5><ul><li><a href="#mission">Mission</a></li><li><a href="#wings">Two Wings</a></li><li><a href="#rivers">Our Rivers</a></li><li><a href="#approach">Approach</a></li><li><a href="#donate">Donate</a></li><li><a href="#volunteer">Join Us</a></li></ul></div>
     <div class="footer-col"><h5>Connect</h5><ul><li><a href="https://www.linkedin.com/in/shaurya-pratap-singh-204b283a2" target="_blank" rel="noopener">Personal LinkedIn</a></li><li><a href="https://www.linkedin.com/company/prav%C4%81h/" target="_blank" rel="noopener">Pravāh LinkedIn</a></li><li><a href="https://www.instagram.com/pravah_in/" target="_blank" rel="noopener">Instagram</a></li><li><a href="mailto:contact@pravah.online">contact@pravah.online</a></li></ul></div>
-    <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">About</a></li><li><a href="#">Privacy</a></li><li><a href="#">Registration (Soon)</a></li></ul></div>
+    <div class="footer-col"><h5>Legal</h5><ul><li><a href="about.html">About</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="registration.html">Registration (Soon)</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Pravāh Initiative. Founded by <a href="#">Shaurya Pratap Singh</a>, Indore, India. Non-profit.</p>
+    <p class="footer-copy">© 2026 Pravāh Initiative. Founded by <a href="about.html#founder">Shaurya Pratap Singh</a>, Indore, India. Non-profit.</p>
     <div class="socials"><a href="https://www.linkedin.com/company/prav%C4%81h/" target="_blank" rel="noopener" class="social">in</a><a href="https://www.instagram.com/pravah_in/" target="_blank" rel="noopener" class="social">ig</a></div>
   </div>
 </footer>
@@ -1126,7 +1126,7 @@ if(canvas){
     ctx.font='bold 11px JetBrains Mono,monospace';
     ctx.fillStyle='rgba(0,212,255,0.6)';ctx.fillText('SARASWATI',18,H*0.38);
     ctx.fillStyle='rgba(92,184,122,0.6)';ctx.fillText('KANH',18,H*0.68);
-    ctx.fillStyle='rgba(255,220,80,0.7)';ctx.fillText('CONFLUENCE →',W*0.86-60,H*0.44);
+    ctx.fillStyle='rgba(255,220,80,0.7)';ctx.fillText('CONFLUENCE ->',W*0.86-60,H*0.44);
     t+=0.012;requestAnimationFrame(draw);
   }
   draw();
@@ -1137,9 +1137,9 @@ function handleDonate(tier,amt){
   if(tier==='custom'){
     const v=document.getElementById('custom-amt').value.trim();
     if(!v||isNaN(v)||Number(v)<=0){alert('Please enter a valid amount.');return;}
-    amt='₹'+Number(v).toLocaleString('en-IN');
-  } else { amt='₹'+Number(amt).toLocaleString('en-IN'); }
-  alert('Thank you for supporting Pravāh! 🌊\n\nDonation tier: '+tier+'\nAmount: '+amt+'\n\nPayment gateway coming soon.\nReach us at: contact@pravah.in');
+    amt='INR '+Number(v).toLocaleString('en-IN');
+  } else { amt='INR '+Number(amt).toLocaleString('en-IN'); }
+  alert('Thank you for supporting Pravah!\n\nDonation tier: '+tier+'\nAmount: '+amt+'\n\nPayment gateway coming soon.\nReach us at: contact@pravah.in');
 }
 
 // Form
@@ -1147,4 +1147,8 @@ function handleJoin(){
   const n=document.getElementById('fn').value.trim();
   const e=document.getElementById('fe').value.trim();
   const r=document.getElementById('fr').value;
-  if(!n||!e||!r){alert('Please f
+  if(!n||!e||!r){alert('Please fill in the required fields.');return;}
+}
+</script>
+</body>
+</html>

@@ -3,8 +3,8 @@ backend:
   branch: backend-integration
 
 publish_mode: editorial_workflow
-site_url: https://YOUR-SITE-NAME.netlify.app
-display_url: https://YOUR-SITE-NAME.netlify.app
+site_url: https://pravah.online
+display_url: https://pravah.online
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"

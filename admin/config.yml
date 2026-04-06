@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: backend-integration
+  branch: main
 
 publish_mode: editorial_workflow
 site_url: https://pravah.online

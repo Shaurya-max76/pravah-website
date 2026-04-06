@@ -1,6 +1,6 @@
 [build]
   publish = "."
-  command = ""
+  command = "node scripts/build-manifest.js"
 
 [build.environment]
   NODE_VERSION = "20"

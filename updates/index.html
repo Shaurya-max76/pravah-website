@@ -40,6 +40,48 @@
             <p class="footer-note">Posts are published via the CMS and appear here automatically on every deploy.</p>
         </div>
     </main>
+
+    <script>
+        const grid = document.getElementById('post-grid');
+
+        function formatDate(value) {
+            const date = new Date(value + 'T00:00:00');
+            return new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+        }
+
+        function renderPosts(posts) {
+            if (!posts || posts.length === 0) {
+                grid.innerHTML = '<p style="color:rgba(240,244,248,0.4);font-size:.85rem;">No posts yet — check back soon.</p>';
+                return;
+            }
+            grid.innerHTML = posts.map(function (post) {
+                return `
+                    <article class="post-card">
+                        <div>
+                            <span class="tag">${post.category || 'Update'}</span>
+                        </div>
+                        <div class="post-meta">
+                            <span>${post.date ? formatDate(post.date) : ''}</span>
+                            <span>${post.location || 'Indore'}</span>
+                        </div>
+                        <h3 style="font-family:'Syne',sans-serif;letter-spacing:-0.03em;line-height:1.15;margin:0;">${post.title}</h3>
+                        <p style="margin:0;color:rgba(240,244,248,0.68);line-height:1.75;font-size:0.93rem;">${post.excerpt || ''}</p>
+                        <a class="post-link" href="post.html?slug=${encodeURIComponent(post.slug)}" style="font-size:0.82rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;">Read →</a>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        fetch('../content/updates/posts/manifest.json')
+            .then(function (res) {
+                if (!res.ok) throw new Error('manifest not found');
+                return res.json();
+            })
+            .then(renderPosts)
+            .catch(function () {
+                grid.innerHTML = '<p style="color:rgba(240,244,248,0.4);font-size:.85rem;">Could not load posts. Make sure the manifest has been built.</p>';
+            });
+    </script>
 </body>
 
 </html>

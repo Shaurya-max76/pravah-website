@@ -346,6 +346,7 @@ section{padding:7rem 5rem;position:relative;}
 .form-wrap{display:flex;flex-direction:column;gap:1rem;}
 .f-group{display:flex;flex-direction:column;gap:.45rem;}
 .f-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--electric);opacity:.8;}
+.f-required{color:var(--leaf);margin-left:.25em;}
 .f-input,.f-select,.f-textarea{background:var(--dark);border:1px solid var(--border);color:var(--white);padding:.9rem 1rem;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .3s;appearance:none;}
 .f-input::placeholder{color:rgba(240,244,248,.18);}
 .f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--electric);}
@@ -976,15 +977,16 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 5
     </div>
     <div class="reveal">
       <div id="form-wrap" class="form-wrap">
-        <form id="volunteer-form" action="https://formspree.io/f/mkoqpnkn" method="POST">
+        <form id="volunteer-form" action="https://formspree.io/f/mkoqpnkn" method="POST" onsubmit="handleJoin()">
         <div class="f-row">
-          <div class="f-group"><label class="f-label">Full Name</label><input type="text" name="name" class="f-input" id="fn" placeholder="Your name" required></div>
+          <div class="f-group"><label class="f-label">Full Name <span class="f-required">*</span></label><input type="text" name="name" class="f-input" id="fn" placeholder="Your name" required></div>
           <div class="f-group"><label class="f-label">City</label><input type="text" name="city" class="f-input" id="fc" placeholder="Based in?"></div>
         </div>
-        <div class="f-group"><label class="f-label">Email</label><input type="email" name="email" class="f-input" id="fe" placeholder="your@email.com" required></div>
+        <div class="f-group"><label class="f-label">Email <span class="f-required">*</span></label><input type="email" name="email" class="f-input" id="fe" placeholder="your@email.com" required></div>
+        <div class="f-group"><label class="f-label">Mobile Number <span class="f-required">*</span></label><input type="tel" name="mobile" class="f-input" id="fm" placeholder="Your mobile number" inputmode="tel" autocomplete="tel" required></div>
         <div class="f-group"><label class="f-label">LinkedIn / Portfolio</label><input type="text" name="linkedin" class="f-input" id="fl" placeholder="Optional"></div>
         <div class="f-group">
-          <label class="f-label">Which Wing?</label>
+          <label class="f-label">Which Wing? <span class="f-required">*</span></label>
           <select name="wing" class="f-select" id="fw2" required>
             <option value="">Select wing</option>
             <option>Tech &amp; Research Wing</option>
@@ -993,7 +995,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 5
           </select>
         </div>
         <div class="f-group">
-          <label class="f-label">Role</label>
+          <label class="f-label">Role <span class="f-required">*</span></label>
           <select name="role" class="f-select" id="fr" required>
             <option value="">Select a role</option>
             <option>Field Researcher</option>
@@ -1107,8 +1109,9 @@ function handleDonate(tier,amt){
 function handleJoin(){
   const n=document.getElementById('fn').value.trim();
   const e=document.getElementById('fe').value.trim();
+  const m=document.getElementById('fm').value.trim();
   const r=document.getElementById('fr').value;
-  if(!n||!e||!r){alert('Please fill in the required fields.');return;}
+  if(!n||!e||!m||!r){alert('Please fill in the required fields.');return;}
 }
 </script>
 </body>
